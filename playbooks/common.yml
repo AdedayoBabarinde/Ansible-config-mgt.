@@ -1,0 +1,40 @@
+---
+- name: update web and nfs servers
+  hosts: webservers, nfs
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+  tasks:
+  - name: ensure wireshark is at the latest version
+    yum:
+      name: wireshark
+      state: latest
+
+- name: update LB and db server
+  hosts: lb,db
+  remote_user: ubuntu
+  become: yes
+  become_user: root
+  tasks:
+  - name: ensure wireshark is at the latest version
+    apt:
+      name: wireshark
+      state: latest
+
+- name: Create Folder
+  file: 
+    path: /Users/ADEDAYO/Documents/markdown/Ansible_Config_mgt/playbooks/common.yml/dir_common
+    owner: user 
+    group: user 
+    mode: 0755 
+    state: directory    
+
+
+    ---
+
+- hosts: all
+  tasks:
+  - name: Creating an empty file
+    file:
+      path: /Users/ADEDAYO/Documents/markdown/Ansible_Config_mgt/playbooks/test/file_common
+      state: touch

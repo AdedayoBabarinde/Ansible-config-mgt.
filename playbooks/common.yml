@@ -1,0 +1,23 @@
+---
+- name: play for all servers
+  hosts: all
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+  tasks:
+  - name: ensure wireshark is at the latest version
+    yum:
+      name: wireshark
+      state: latest
+  - name: nfs client
+    yum:
+      name: nfs-utils
+      state: latest
+  - name: chrony
+    yum:
+      name: chrony
+      state: latest
+  - name: update yum repo
+    yum:
+      name: "*"
+      state: latest

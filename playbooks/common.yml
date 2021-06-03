@@ -1,69 +1,13 @@
 ---
-- name: play for all servers
-  hosts: webservers, db
+- name: update jenkins server
+  hosts: jk
   become: yes
+  remote_user: ubuntu
+  
   
   
   tasks:
     
-    - name: create a directory
-      file:
-        path: /home/newfolder
-        state: directory
-
-    - name: Create an empty file
-      file:
-        path: /home/newfolder/file1.txt
-        state: touch
-
-    - name: update yum repo
-      yum:
-        name: "*"
-        state: latest
-
-    - name:  install wireshark ,nfs client, chrony
-      yum:
-        name: "{{ item }}"
-        state: latest
-      loop:
-        - wireshark
-        - nfs-utils
-        - chrony
-
-    - name: start and enable chrony
-      service:
-        name: chronyd
-        enabled: yes
-        state: started
-
-    - name: install mysql
-      yum:
-        name: mysql-server
-        state: latest
-      notify:
-        - start and enable mysql
-
-  handlers:
-    - name: start and enable mysql
-      service:
-        name: mysqld
-        enabled: yes
-        state: started
-
-
-- name: update LB server
-  hosts: lb
-  remote_user: ubuntu
-  become: yes
-      
-      
-  tasks:
-    - name: ensure wireshark is at the latest version
-      apt:
-        name: wireshark
-        state: latest
-
-
     - name: create a directory
       file:
         path: /home/newfolder

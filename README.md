@@ -1,7 +1,7 @@
 # Ansible-config-mgt.
 
 In this project, the automation of project 7 - 10 is done via the automation of routine task
- with Ansible Configuration Management via YAML language
+ with Ansible Configuration Management via YAML language.
 
 
 

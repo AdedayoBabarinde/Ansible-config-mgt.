@@ -1,0 +1,10 @@
+---
+- hosts: all
+- import_playbook: /home/ec2-user/ansible/Ansible-config-mgt./static-assignments/common.yml
+
+
+- hosts: uat-webservers
+- import_playbook: /home/ec2-user/ansible/Ansible-config-mgt./static-assignments/uat-webservers.yml
+
+
+

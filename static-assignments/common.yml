@@ -1,0 +1,24 @@
+---
+- name: update webserver server
+  hosts: webservers
+  become: yes
+  remote_user: ec2-user
+  
+  
+  
+  tasks:
+    
+    - name: create a directory
+      file:
+        path: /home/newfolder
+        state: directory
+
+    - name: Create an empty file
+      file:
+        path: /home/newfolder/file1.txt
+        state: touch
+
+    - name: Install wireshark
+      yum: 
+        name: wireshark
+        state: latest

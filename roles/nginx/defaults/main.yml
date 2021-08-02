@@ -79,13 +79,13 @@ nginx_vhosts: []
 #   state: "absent" # To remove the vhost configuration.
 
 nginx_upstreams: []
- - name: myapp1
+ - name: mylb1
    strategy: "ip_hash" # "least_conn", etc.
    keepalive: 16 # optional
    servers:
      - "172.31.29.55 weight=3"
      - "172.31.29.212 weight=3"
-     - "srv3.example.com"
+     
 
 
 nginx_log_format: |-

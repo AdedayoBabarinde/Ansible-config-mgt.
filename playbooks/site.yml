@@ -1,24 +1,18 @@
 ---
--  hosts: all
--  import_playbook: /home/ec2-user/ansible/Ansible-config-mgt./static-assignments/common.yml
 
+ - name: import common file
+  import_playbook: ../static-assignments/common.yml
+  tags:
+    - always
 
--  hosts: uat-webservers
--  import_playbook: /home/ec2-user/ansible/Ansible-config-mgt./static-assignments/uat-webservers.yml
+- name: include env-vars file
+  import_playbook: ../dynamic-assignments/env-vars.yml
+  tags:
+    - always
 
--  name: Include dynamic variables
-   hosts: all
-   tasks:
+- name: import webservers file
+  import_playbook: ../static-assignments/uat-webservers.yml
 
-      - import_playbook: ../static-assignments/common.yml
-      - include_playbook: ../dynamic-assignments/env-vars.yml
-   tags:
-      - always
-     
--  name: Webserver assignment
-   hosts: uat-webservers
-      - import_playbook: ../static-assignments/uat-webservers.yml
-
--  name: Load balancer
-   host: nginx
-      - import_playbook: ../
+- name: import Loadbalancers assignment
+  import_playbook: ../static-assignments/lb.yml
+  when: load_balancer_is_required     

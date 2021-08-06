@@ -1,3 +1,7 @@
+enable_nginx_lb: true
+load_balancer_is_required: true
+
+
 [webservers]
 172.31.29.55
 172.31.29.212

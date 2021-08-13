@@ -11,6 +11,7 @@
             - prod.yml
             - uat.yml
           paths:
-            - "{{ playbook_dir }}/../env_vars"
+            - "{{ playbook_dir }}/home/ec2-user/ansible/Ansible-config-mgt./dynamic-assignments/env-vars"
+          skip: true
       tags:
         - always

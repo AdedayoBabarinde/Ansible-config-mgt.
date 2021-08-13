@@ -47,7 +47,7 @@ nginx_extra_conf_options: ""
 #     env VARIABLE;
 #     include /etc/nginx/main.d/*.conf;
 
-nginx_extra_http_options: ""
+nginx_extra_http_options: 
  Example extra http options, printed inside the main server http config:
      nginx_extra_http_options: |
        proxy_buffering    off;
@@ -78,15 +78,15 @@ nginx_vhosts: []
 #   template: "" # Can be used to override the `nginx_vhost_template` per host.
 #   state: "absent" # To remove the vhost configuration.
 
-nginx_upstreams: []
- - name: mylb1
-   strategy: "ip_hash" # "least_conn", etc.
-   keepalive: 16 # optional
-   servers:  {
+nginx_upstreams:
+- name: mylb1
+  strategy: "ip_hash" # "least_conn", etc.
+  keepalive: 16 # optional
+  servers:  
      - "18.132.143.64 weight=3"
      - "3.8.240.135 weight=3"
-     - "proxy_pass http://mylb1"
-   } 
+     
+    
     
 
 nginx_log_format: |-
